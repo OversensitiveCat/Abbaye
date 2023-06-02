@@ -3,6 +3,8 @@ import barbaPrefetch from '@barba/prefetch'
 import { gsap } from 'gsap'
 
 import { leave, enter } from './assets/transitions/transitions'
+import eventHover from './assets/views/animations'
+import eventsFilter from './assets/views/events'
 import { setLenis } from './assets/views/lenis'
 
 function delay(t, f) {
@@ -22,9 +24,22 @@ barba.hooks.after(() => {
 })
 
 barba.init({
-  debug: true,
   timeout: 4000,
-  views: [],
+  views: [
+    {
+      namespace: 'home',
+      afterEnter() {
+        delay(1, eventHover)
+      },
+    },
+    {
+      namespace: 'events',
+      afterEnter() {
+        delay(1, eventsFilter)
+        delay(1, eventHover)
+      },
+    },
+  ],
   transitions: [
     {
       name: 'default',
