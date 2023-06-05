@@ -3,24 +3,31 @@ import barbaPrefetch from '@barba/prefetch'
 import { gsap } from 'gsap'
 
 import { leave, enter } from './assets/transitions/transitions'
-import eventHover from './assets/views/animations'
+import {
+  arrowUpHover,
+  arrowDownHover,
+  arrowRoundHover,
+  eventHover,
+} from './assets/views/animations'
 import eventsFilter from './assets/views/events'
+import galerie from './assets/views/galerie'
 import { setLenis } from './assets/views/lenis'
+import drop from './assets/views/mentions'
+import navMobile from './assets/views/navMobile'
 
 function delay(t, f) {
   gsap.delayedCall(t, f)
 }
 
-setLenis()
-
 barba.use(barbaPrefetch)
+
+barba.hooks.afterEnter((data) => {
+  setLenis()
+  navMobile(data)
+})
 
 barba.hooks.afterLeave(() => {
   window.scrollTo(0, 0)
-})
-
-barba.hooks.after(() => {
-  delay(1, setLenis)
 })
 
 barba.init({
@@ -29,7 +36,25 @@ barba.init({
     {
       namespace: 'home',
       afterEnter() {
-        delay(1, eventHover)
+        delay(0.5, () => {
+          eventHover(), arrowDownHover(), arrowRoundHover(), arrowUpHover()
+        })
+      },
+    },
+    {
+      namespace: 'about',
+      afterEnter() {
+        delay(0.5, () => {
+          arrowUpHover()
+        })
+      },
+    },
+    {
+      namespace: 'contact',
+      afterEnter() {
+        delay(0.5, () => {
+          arrowUpHover()
+        })
       },
     },
     {
@@ -37,6 +62,26 @@ barba.init({
       afterEnter() {
         delay(1, eventsFilter)
         delay(1, eventHover)
+      },
+    },
+    {
+      namespace: 'galerie',
+      afterEnter() {
+        delay(1, galerie)
+      },
+    },
+    {
+      namespace: 'mentions',
+      afterEnter() {
+        delay(1, drop)
+      },
+    },
+    {
+      namespace: 'event',
+      afterEnter() {
+        delay(0.5, () => {
+          arrowUpHover()
+        })
       },
     },
   ],

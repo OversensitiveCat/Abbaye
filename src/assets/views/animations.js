@@ -1,30 +1,173 @@
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+gsap.registerPlugin(ScrollToPlugin)
 
 const eventHover = () => {
-  const events = gsap.utils.toArray('[data-hover]')
+  const elements = gsap.utils.toArray('[data-hover]')
+  function data(e) {
+    return e.dataset.hover == 'event'
+  }
+  const events = elements.filter(data)
   events.forEach((e) => {
-    let cross = e.querySelector('.event-more')
+    let back = e.querySelector('.back')
+    let front = e.querySelector('.front')
+    let tl = gsap.timeline()
     e.addEventListener('mouseenter', () => {
-      gsap.to(cross, {
-        scale: 1.2,
-        rotate: 90,
-        transformOrigin: 'center',
-        duration: 0.35,
-      })
+      tl.to(back, {
+        attr: { fill: '#191818' },
+        duration: 0.3,
+        ease: 'none',
+      }).to(
+        front,
+        {
+          attr: { fill: '#f4f4f4' },
+          duration: 0.3,
+          ease: 'none',
+        },
+        0
+      )
     })
     e.addEventListener('mouseleave', () => {
-      gsap.to(cross, {
-        scale: 1,
-        rotate: 0,
-        transformOrigin: 'center',
-        duration: 0.35,
-      })
+      tl.to(back, {
+        attr: { fill: '#f4f4f4' },
+        duration: 0.3,
+        ease: 'none',
+      }).to(
+        front,
+        {
+          attr: { fill: '#191818' },
+          duration: 0.3,
+          ease: 'none',
+        },
+        0
+      )
     })
   })
 }
 
-export default eventHover
+const arrowDownHover = () => {
+  let l = document.querySelector('[data-hover="down"]')
+  let a = l.querySelector('.link-arrow')
+  l.addEventListener('mouseenter', () => {
+    gsap.fromTo(
+      a,
+      { scale: 1, yPercent: 0 },
+      {
+        scale: 1.1,
+        yPercent: 20,
+        transformOrigin: 'center',
+        ease: 'none',
+        duration: 0.3,
+      }
+    )
+  })
+  l.addEventListener('mouseleave', () => {
+    gsap.fromTo(
+      a,
+      { scale: 1.1, yPercent: 20 },
+      {
+        scale: 1,
+        yPercent: 0,
+        transformOrigin: 'center',
+        ease: 'none',
+        duration: 0.3,
+      }
+    )
+  })
+  l.addEventListener('click', () => {
+    gsap.to(window, {
+      scrollTo: '#next-saison',
+      ease: 'power1.inOut',
+      duration: 1,
+    })
+  })
+}
+
+const arrowRoundHover = () => {
+  let l = document.querySelector('[data-hover="round"]')
+  let a = l.querySelector('.link-arrow')
+  gsap.set(a, { rotateY: -180, rotate: -140 })
+
+  let tl = gsap.timeline()
+  l.addEventListener('mouseenter', () => {
+    tl.fromTo(
+      l,
+      { rotate: -13 },
+      {
+        rotate: -30,
+        transformOrigin: 'center',
+        ease: 'none',
+        duration: 0.3,
+      }
+    ).fromTo(
+      a,
+      { scale: 1 },
+      {
+        scale: 1.1,
+        transformOrigin: 'center',
+        ease: 'none',
+        duration: 0.3,
+      },
+      0
+    )
+  })
+  l.addEventListener('mouseleave', () => {
+    tl.fromTo(
+      l,
+      { rotate: -30 },
+      {
+        rotate: -13,
+        transformOrigin: 'center',
+        ease: 'none',
+        duration: 0.3,
+      }
+    ).fromTo(
+      a,
+      { scale: 1.1 },
+      {
+        scale: 1,
+        transformOrigin: 'center',
+        ease: 'none',
+        duration: 0.3,
+      },
+      0
+    )
+  })
+}
+
+const arrowUpHover = () => {
+  let links = document.querySelectorAll('[data-hover="up"]')
+  links.forEach((l) => {
+    let a = l.querySelector('.link-arrow')
+    gsap.set(a, { rotateY: -180, rotate: -140 })
+    l.addEventListener('mouseenter', () => {
+      gsap.fromTo(
+        a,
+        { scale: 1, rotate: -140 },
+        {
+          scale: 1.1,
+          rotate: -160,
+          transformOrigin: 'center',
+          ease: 'none',
+          duration: 0.3,
+        }
+      )
+    })
+    l.addEventListener('mouseleave', () => {
+      gsap.fromTo(
+        a,
+        { scale: 1.1, rotate: -160 },
+        {
+          scale: 1,
+          rotate: -140,
+          transformOrigin: 'center',
+          ease: 'none',
+          duration: 0.3,
+        }
+      )
+    })
+  })
+}
+
+export { eventHover, arrowRoundHover, arrowDownHover, arrowUpHover }

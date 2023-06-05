@@ -11,7 +11,7 @@ const leave = (data, done) => {
       done()
     },
   })
-  tl.set(page, { zIndex: 2 })
+  tl.set(page, { zIndex: 10 })
     .fromTo(
       page,
       { yPercent: -100 },
@@ -27,9 +27,6 @@ const leave = (data, done) => {
 }
 
 const enter = (data) => {
-  // let e = Array.from(data.next.container.querySelectorAll('[data-anim]'))
-  // console.log(e)
-
   let tl = gsap.timeline()
   tl.fromTo(
     page,
