@@ -10,6 +10,7 @@ import {
   eventHover,
 } from './assets/views/animations'
 import eventsFilter from './assets/views/events'
+import filterMob from './assets/views/filter-mob'
 import galerie from './assets/views/galerie'
 import { setLenis } from './assets/views/lenis'
 import drop from './assets/views/mentions'
@@ -60,8 +61,9 @@ barba.init({
     {
       namespace: 'events',
       afterEnter() {
-        delay(1, eventsFilter)
-        delay(1, eventHover)
+        delay(1, () => {
+          eventsFilter(), eventHover(), filterMob()
+        })
       },
     },
     {

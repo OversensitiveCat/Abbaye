@@ -76,7 +76,11 @@ const galerie = () => {
 
   const legends = [
     { expo: 'Espace Poétique', artist: 'Maryline Pomian', year: 2005 },
-    { expo: 'Sourire de Sculpteur', artist: '–', year: 2006 },
+    {
+      expo: 'Sourire de Sculpteur',
+      artist: 'Marie-Pascale Deluen',
+      year: 2006,
+    },
     { expo: 'Métissages', artist: 'Khadidja Seddiki', year: 2008 },
     { expo: 'Sculptures célestes', artist: 'Angela Glajkar', year: 2008 },
     { expo: 'Chaos et cosmos', artist: 'Martine Lutz', year: 2010 },
