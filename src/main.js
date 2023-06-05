@@ -20,6 +20,8 @@ function delay(t, f) {
   gsap.delayedCall(t, f)
 }
 
+setLenis()
+
 barba.use(barbaPrefetch)
 
 barba.hooks.afterEnter((data) => {
