@@ -79,7 +79,7 @@ const arrowDownHover = () => {
     gsap.to(window, {
       scrollTo: '#next-saison',
       ease: 'power1.inOut',
-      duration: 1,
+      duration: 0.75,
     })
   })
 }

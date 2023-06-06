@@ -28,6 +28,9 @@ const leave = (data, done) => {
 }
 
 const enter = (data) => {
+  if (data.next.namespace == 'home') {
+    gsap.set('.once-home', { zIndex: -2 })
+  }
   let tl = gsap.timeline({ paused: true })
   tl.fromTo(
     page,

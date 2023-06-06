@@ -15,6 +15,7 @@ import galerie from './assets/views/galerie'
 import { setLenis } from './assets/views/lenis'
 import drop from './assets/views/mentions'
 import navMobile from './assets/views/navMobile'
+import homeOnce from './once'
 
 function delay(t, f) {
   gsap.delayedCall(t, f)
@@ -23,6 +24,10 @@ function delay(t, f) {
 setLenis()
 
 barba.use(barbaPrefetch)
+
+barba.hooks.beforeEnter(() => {
+  window.addEventListener('unload', () => window.scrollTo(0, 0))
+})
 
 barba.hooks.afterEnter((data) => {
   setLenis()
@@ -94,6 +99,20 @@ barba.init({
       },
       enter(data) {
         enter(data)
+      },
+    },
+    {
+      name: 'home',
+      to: { namespace: ['home'] },
+      afterLeave(data) {
+        const done = this.async()
+        leave(data, done)
+      },
+      enter(data) {
+        enter(data)
+      },
+      once() {
+        homeOnce()
       },
     },
   ],
