@@ -7,12 +7,12 @@ const lenis = new Lenis({
 })
 
 const setLenis = () => {
+  document.querySelector('html').style.height = 'auto'
   function raf(time) {
     lenis.raf(time)
     requestAnimationFrame(raf)
   }
   requestAnimationFrame(raf)
-  // document.querySelector('html').style.height = 'auto'
 }
 
 export { lenis, setLenis }

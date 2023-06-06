@@ -29,10 +29,6 @@ barba.hooks.afterEnter((data) => {
   navMobile(data)
 })
 
-barba.hooks.afterLeave(() => {
-  window.scrollTo(0, 0)
-})
-
 barba.init({
   timeout: 4000,
   views: [
@@ -92,7 +88,7 @@ barba.init({
   transitions: [
     {
       name: 'default',
-      leave(data) {
+      afterLeave(data) {
         const done = this.async()
         leave(data, done)
       },

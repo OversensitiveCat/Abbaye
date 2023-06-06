@@ -1,4 +1,5 @@
 import { gsap } from 'gsap'
+import imagesLoaded from 'imagesloaded'
 
 const page = document.querySelector('.transition-page')
 const content = document.querySelector('.transition-content')
@@ -27,7 +28,7 @@ const leave = (data, done) => {
 }
 
 const enter = (data) => {
-  let tl = gsap.timeline()
+  let tl = gsap.timeline({ paused: true })
   tl.fromTo(
     page,
     { yPercent: 0 },
@@ -41,6 +42,10 @@ const enter = (data) => {
     )
     .from(data.next.container, { opacity: 0, duration: 1 }, '-=0.8')
     .set(page, { zIndex: -2, yPercent: 0 })
+
+  imagesLoaded(data.next.container, { background: true }, function () {
+    tl.play()
+  })
 }
 
 export { leave, enter }
