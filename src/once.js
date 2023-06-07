@@ -13,14 +13,21 @@ const homeOnce = () => {
 
   let mm = gsap.matchMedia()
 
-  let tl = gsap.timeline({ paused: true, onComplete: () => lenis.start() })
-  tl.from(title, {
-    opacity: 0,
-    duration: 0.7,
-    ease: 'power1.inOut',
-    stagger: 0.4,
-    rotateX: -60,
+  let tl = gsap.timeline({
+    paused: true,
+    onComplete: () => {
+      lenis.start(), gsap.set(content, { opacity: 0 })
+    },
   })
+  tl.set(content, { opacity: 1 })
+    .from(title, {
+      delay: 0.6,
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power1.inOut',
+      stagger: 0.4,
+      rotateX: -60,
+    })
     .from(
       logo,
       {
@@ -75,7 +82,7 @@ const homeOnce = () => {
       },
       '-=0.5'
     )
-  gsap.set(content, { opacity: 1 })
+
   imagesLoaded(
     document.querySelector('.barba-container'),
     { background: true },
