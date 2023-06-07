@@ -1,42 +1,37 @@
 import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
-import SplitType from 'split-type'
 
 import { lenis } from './assets/views/lenis'
 
 const homeOnce = () => {
   lenis.stop()
 
-  const page = document.querySelector('.once-home')
-  const content = document.querySelector('.once-container')
+  const page = document.querySelector('.once-home'),
+    content = document.querySelector('.once-container'),
+    title = gsap.utils.toArray('.once-title'),
+    logo = document.querySelector('.once-logo')
 
-  const letters = new SplitType('.once-title, .once-subtitle', {
-    types: 'chars',
-    tagName: 'span',
-  })
-
-  let title = letters.chars.slice(0, 15)
-  let subtitle = letters.chars.slice(15)
   let mm = gsap.matchMedia()
 
   let tl = gsap.timeline({ paused: true, onComplete: () => lenis.start() })
   tl.from(title, {
     opacity: 0,
-    duration: 0.2,
-    ease: 'none',
-    stagger: { amount: 0.6 },
+    duration: 0.7,
+    ease: 'power1.inOut',
+    stagger: 0.4,
+    rotateX: -60,
   })
     .from(
-      subtitle,
+      logo,
       {
         opacity: 0,
-        duration: 0.2,
+        yPercent: 60,
+        duration: 0.55,
         ease: 'none',
-        stagger: { amount: 0.7 },
       },
-      '+=0.2'
+      '-=0.55'
     )
-    .to(page, { yPercent: 100, duration: 0.8, ease: 'power2.inOut' }, '+=0.4')
+    .to(page, { yPercent: 100, duration: 1, ease: 'power2.inOut' }, '+=0.5')
     .to(content, { yPercent: -80, duration: 0.8, ease: 'power2.inOut' }, '<')
     .set(page, { zIndex: -2, yPercent: 0 })
   mm.add('(min-width: 992px)', () => {
