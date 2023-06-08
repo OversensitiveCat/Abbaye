@@ -1,7 +1,7 @@
 import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
 
-import { lenis } from './assets/views/lenis'
+import { lenis } from '../views/lenis'
 
 const homeOnce = () => {
   lenis.stop()

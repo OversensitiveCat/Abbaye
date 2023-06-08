@@ -77,7 +77,7 @@ const galerie = () => {
   const legends = [
     { expo: 'Espace Poétique', artist: 'Maryline Pomian', year: 2005 },
     {
-      expo: 'Sourire de Sculpteur',
+      expo: 'Sourire de Sculpteure',
       artist: 'Marie-Pascale Deluen',
       year: 2006,
     },

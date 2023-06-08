@@ -2,6 +2,7 @@ import barba from '@barba/core'
 import barbaPrefetch from '@barba/prefetch'
 import { gsap } from 'gsap'
 
+import homeOnce from './assets/transitions/once'
 import { leave, enter } from './assets/transitions/transitions'
 import {
   arrowUpHover,
@@ -15,7 +16,6 @@ import galerie from './assets/views/galerie'
 import { setLenis } from './assets/views/lenis'
 import drop from './assets/views/mentions'
 import navMobile from './assets/views/navMobile'
-import homeOnce from './once'
 
 function delay(t, f) {
   gsap.delayedCall(t, f)
