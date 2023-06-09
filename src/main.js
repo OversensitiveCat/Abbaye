@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 
 import homeOnce from './assets/transitions/once'
 import { leave, enter } from './assets/transitions/transitions'
+import about from './assets/views/about'
 import {
   arrowUpHover,
   arrowDownHover,
@@ -49,7 +50,7 @@ barba.init({
       namespace: 'about',
       afterEnter() {
         delay(0.5, () => {
-          arrowUpHover()
+          arrowUpHover(), about()
         })
       },
     },
