@@ -1,6 +1,6 @@
 import barba from '@barba/core'
 import barbaPrefetch from '@barba/prefetch'
-import { gsap } from 'gsap'
+import imagesLoaded from 'imagesloaded'
 
 import homeOnce from './assets/transitions/once'
 import { leave, enter } from './assets/transitions/transitions'
@@ -18,10 +18,6 @@ import { setLenis } from './assets/views/lenis'
 import drop from './assets/views/mentions'
 import navMobile from './assets/views/navMobile'
 
-function delay(t, f) {
-  gsap.delayedCall(t, f)
-}
-
 setLenis()
 
 barba.use(barbaPrefetch)
@@ -36,58 +32,51 @@ barba.hooks.afterEnter((data) => {
 })
 
 barba.init({
+  preventRunning: true,
   timeout: 4000,
   views: [
     {
       namespace: 'home',
       afterEnter() {
-        delay(0.5, () => {
-          eventHover(), arrowDownHover(), arrowRoundHover(), arrowUpHover()
-        })
+        eventHover(), arrowDownHover(), arrowRoundHover(), arrowUpHover()
       },
     },
     {
       namespace: 'about',
       afterEnter() {
-        delay(0.5, () => {
-          arrowUpHover(), about()
-        })
+        arrowUpHover(), about()
       },
     },
     {
       namespace: 'contact',
       afterEnter() {
-        delay(0.5, () => {
-          arrowUpHover()
-        })
+        arrowUpHover()
       },
     },
     {
       namespace: 'events',
       afterEnter() {
-        delay(1, () => {
-          eventsFilter(), eventHover(), filterMob()
-        })
+        eventsFilter(), eventHover(), filterMob()
       },
     },
     {
       namespace: 'galerie',
-      afterEnter() {
-        delay(1, galerie)
+      afterEnter(data) {
+        imagesLoaded(data.next.container, function () {
+          galerie()
+        })
       },
     },
     {
       namespace: 'mentions',
       afterEnter() {
-        delay(1, drop)
+        drop()
       },
     },
     {
       namespace: 'event',
       afterEnter() {
-        delay(0.5, () => {
-          arrowUpHover()
-        })
+        arrowUpHover()
       },
     },
   ],
