@@ -1,6 +1,8 @@
 import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
 
+import diapo from '../views/diapo'
+
 const page = document.querySelector('.transition-page')
 const content = document.querySelector('.transition-content')
 
@@ -28,9 +30,6 @@ const leave = (data, done) => {
 }
 
 const enter = (data) => {
-  if (data.next.namespace == 'home') {
-    gsap.set('.once-home', { zIndex: -2 })
-  }
   let tl = gsap.timeline({ paused: true })
   tl.fromTo(
     page,
@@ -45,6 +44,11 @@ const enter = (data) => {
     )
     .from(data.next.container, { opacity: 0, duration: 1 }, '-=0.8')
     .set(page, { zIndex: -2, yPercent: 0 })
+
+  if (data.next.namespace == 'home') {
+    gsap.set('.once-home', { zIndex: -2 })
+    tl.eventCallback('onComplete', diapo)
+  }
 
   imagesLoaded(data.next.container, { background: true }, function () {
     tl.play()

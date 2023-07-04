@@ -1,6 +1,7 @@
 import { gsap } from 'gsap'
 import imagesLoaded from 'imagesloaded'
 
+import diapo from '../views/diapo'
 import { lenis } from '../views/lenis'
 
 const homeOnce = () => {
@@ -16,7 +17,9 @@ const homeOnce = () => {
   let tl = gsap.timeline({
     paused: true,
     onComplete: () => {
-      lenis.start(), gsap.set(content, { opacity: 0 })
+      lenis.start()
+      gsap.set(content, { opacity: 0 })
+      diapo()
     },
   })
   tl.set(content, { opacity: 1 })
@@ -59,11 +62,7 @@ const homeOnce = () => {
       '-=0.4'
     )
   })
-  tl.from(
-    '.hero-section > img',
-    { scale: 0.5, opacity: 0, duration: 1 },
-    '-=0.6'
-  )
+  tl.from('.hero-section .first-diapo', { scale: 0, duration: 1.5 }, '-=0.6')
     .from(
       '.hero-section .big-para',
       {

@@ -11,6 +11,7 @@ import {
   arrowRoundHover,
   eventHover,
 } from './assets/views/animations'
+// import diapo from './assets/views/diapo'
 import eventsFilter from './assets/views/events'
 import filterMob from './assets/views/filter-mob'
 import galerie from './assets/views/galerie'
