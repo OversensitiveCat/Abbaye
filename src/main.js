@@ -11,7 +11,6 @@ import {
   arrowRoundHover,
   eventHover,
 } from './assets/views/animations'
-// import diapo from './assets/views/diapo'
 import eventsFilter from './assets/views/events'
 import filterMob from './assets/views/filter-mob'
 import galerie from './assets/views/galerie'
@@ -20,15 +19,11 @@ import drop from './assets/views/mentions'
 import navMobile from './assets/views/navMobile'
 
 setLenis()
+window.addEventListener('unload', () => window.scrollTo(0, 0))
 
 barba.use(barbaPrefetch)
 
-barba.hooks.beforeEnter(() => {
-  window.addEventListener('unload', () => window.scrollTo(0, 0))
-})
-
 barba.hooks.afterEnter((data) => {
-  setLenis()
   navMobile(data)
 })
 

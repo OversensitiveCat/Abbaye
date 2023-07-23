@@ -4,9 +4,8 @@ import Lenis from '@studio-freight/lenis'
 'use strict'
 
 const lenis = new Lenis({
-  duration: 1.5,
+  lerp: 0.1,
   wheelMultiplier: 0.5,
-  touchMultiplier: 3,
 })
 
 const setLenis = () => {
