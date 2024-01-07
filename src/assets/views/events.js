@@ -5,6 +5,7 @@ const eventsFilter = () => {
   const collection = document.querySelector('#archives')
   const events = gsap.utils.toArray('#archives > .event')
   let obj = [
+    { year: 2023, items: [], checked: false },
     { year: 2022, items: [], checked: false },
     { year: 2021, items: [], checked: false },
     { year: 2020, items: [], checked: false },

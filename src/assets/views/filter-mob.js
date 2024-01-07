@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { gsap } from 'gsap'
 
 const filterMob = () => {
@@ -9,7 +8,8 @@ const filterMob = () => {
       linesOne = [fields[0], fields[1], fields[2]],
       linesTwo = [fields[3], fields[4], fields[5]],
       linesThree = [fields[6], fields[7], fields[8]],
-      linesFour = [fields[9], fields[10], fields[11]]
+      linesFour = [fields[9], fields[10], fields[11]],
+      linesFive = [fields[12]]
 
     let open = false
 
@@ -51,6 +51,12 @@ const filterMob = () => {
       )
       .fromTo(
         linesFour,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.5, ease: 'power1.inOut' },
+        '-=0.35'
+      )
+      .fromTo(
+        linesFive,
         { autoAlpha: 0 },
         { autoAlpha: 1, duration: 0.5, ease: 'power1.inOut' },
         '-=0.35'
